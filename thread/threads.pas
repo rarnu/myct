@@ -5,7 +5,7 @@ unit threads;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, fphttpclient, threadqueue, fgl, Forms;
+  Classes, SysUtils, FileUtil, fphttpclient, fgl, Forms;
 
 type
 
