@@ -58,18 +58,19 @@ var
   img: TD2Bitmap;
   ms: TMemoryStream;
 begin
+
   ms := TMemoryStream.Create;
   c1.SaveToStream(ms);
   ms.Seek(0, soFromBeginning);
   img := TD2Bitmap.CreateFromStream(ms);
   case mode of
-  fmVert:img.FlipVertical;
-  fmHorz:img.FlipHorizontal;
+  fmHorz: img.FlipVertical;
+  fmVert: img.FlipHorizontal;
   end;
   ms.Clear;
   img.SaveToStream(ms);
   ms.Seek(0, soFromBeginning);
-  c1.LoadFromStream(ms);
+  c2.LoadFromStream(ms);
   ms.Free;
   img.Free;
 end;
@@ -112,13 +113,10 @@ end;
 
 procedure innerScale(c1, c2: TFPImageBitmap; scale: Single);
 var
-  w, h: Integer;
   dest: TRect;
 begin
-  w := Trunc(c1.Width * scale);
-  h := Trunc(c1.Height * scale);
-  c2.Width:= w;
-  c2.Height:= h;
+  c2.Width:= Trunc(c1.Width * scale);
+  c2.Height:= Trunc(c1.Height * scale);
   dest := Rect(0, 0, c2.Width, c2.Height);
   c2.Canvas.StretchDraw(dest, c1);
 end;

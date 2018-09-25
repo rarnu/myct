@@ -29,7 +29,7 @@
         <PackageName Value="adLCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="14">
       <Unit0>
         <Filename Value="app.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -91,6 +91,13 @@
         <Filename Value="../util/regexutils.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="frmImage.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormImage"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit13>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

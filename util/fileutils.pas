@@ -18,15 +18,33 @@ function textToFile(txt: string; AFilePath: string): Boolean;
 
 implementation
 
+procedure makeDir(APath: string);
+var
+  p: string;
+begin
+  p := ExtractFilePath(APath);
+  if (not DirectoryExists(p)) then begin
+    ForceDirectories(p);
+  end;
+end;
+
 function fileToStream(AFilePath: string): TStream;
 begin
-  Exit(TFileStream.Create(AFilePath, fmOpenRead or fmShareDenyWrite));
+  try
+    Exit(TFileStream.Create(AFilePath, fmOpenRead or fmShareDenyWrite));
+  except
+    Exit(nil);
+  end;
 end;
 
 function fileToText(AFilePath: string): string;
 begin
   with TStringList.Create do begin
-    LoadFromFile(AFilePath);
+    try
+      LoadFromFile(AFilePath);
+    except
+      Result := '';
+    end;
     Result := Text;
     Free;
   end;
@@ -34,6 +52,7 @@ end;
 
 function streamToFile(AStream: TStream; AFilePath: string): Boolean;
 begin
+  makeDir(AFilePath);
   with TMemoryStream.Create do begin
     AStream.Seek(0, soFromBeginning);
     CopyFrom(AStream, AStream.Size);
@@ -63,6 +82,7 @@ end;
 
 function textToFile(txt: string; AFilePath: string): Boolean;
 begin
+  makeDir(AFilePath);
   with TStringList.Create do begin
     Text:= txt;
     try
