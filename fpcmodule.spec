@@ -6,4 +6,4 @@ module_name=myct
 unit_dirs=orca;util;thread
 include_dirs=
 library_dirs=
-
+required_package=adLCL;pl_orca
