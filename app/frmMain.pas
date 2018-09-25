@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, frmBase, orca_scene2d,
-  jsonparser, fpjson, jsonscanner;
+  jsonparser, fpjson, jsonscanner, regexutils;
 
 type
 
@@ -164,6 +164,9 @@ begin
   box.List.Add('bbb');
   box.List.Add('ccc');
   box.reloadData();
+
+  WriteLn(Format('isEmail => %s', [BoolToStr(isEmail('rarnu1985@gmail.com'), True)]));
+  WriteLn(Format('isEmail => %s', [BoolToStr(isEmail('abcdefg@aaaaa'), True)]));
 
 end;
 
