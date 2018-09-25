@@ -32,10 +32,19 @@ json.mapping(o);
 WriteLn(o.ToString);
 
 ... ...
+
 img := TPortableNetworkGraphic.Create;
 img.LoadFromFile('a.png');
 img1 := img.scale(0.5);
 
+... ...
+
+with THttpThread.Create(HTTPURL, hmPost) do begin
+  PostParam.Add('name', 'rarnu');
+  FileParam.Add('file', 'sample.png');
+  Callback := @onHttpUploadFileCallback;
+  Start;
+end;
 ```
 
 
